@@ -14,14 +14,21 @@ function playRound(computer_choice, player_choice) {
 }
 
 function game() {
+    let typo = "";
     for (i=1; i<6; i++) {
-        let person = prompt("enter ur choice: ROCK/PAPER/SCISSORS");
-        if (choices.includes(person.toLowerCase())) {
+        let person = prompt(typo + "Enter ur choice: ROCK/PAPER/SCISSORS");
+        typo = "";
+        if (person === null) {
+            console.log("Game aborted");
+            break;
+        }
+        else if (choices.includes(person.toLowerCase())) {
             console.log(playRound(getCompChoice(), person.toLowerCase()));
         }
+       
         else {
-            let person = prompt("You had a typo, enter again: ROCK/PAPER/SCISSORS");
-            i--
-        }     
+            typo = "You had a typo! ";
+            i--;
+        }
     }
 }
